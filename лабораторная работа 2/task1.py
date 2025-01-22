@@ -1,11 +1,35 @@
-money_capital = 20000  # Подушка безопасности
-salary = 5000  # Ежемесячная зарплата
-spend = 6000  # Траты за первый месяц
-increase = 0.05  # Ежемесячный рост цен
-money_capital_ = money_capital + salary - spend  # останется от подушки безопасности после первого месяца
-months = 1
-while money_capital_ + salary >= spend:
-    spend *= 1.05
-    money_capital_ = money_capital_ + salary - spend
-    months += 1
-print("Количество месяцев, которое можно протянуть без долгов:", months)
+BOOKS_DATABASE = [
+    {
+        "id": 1,
+        "name": "test_name_1",
+        "pages": 200,
+    },
+    {
+        "id": 2,
+        "name": "test_name_2",
+        "pages": 400,
+    }
+]
+
+# TODO написать класс Book
+class Book:
+    def __init__(self, name: str, id_: int, pages: int):
+        self.name = name
+        self.id_ = id_
+        self.pages = pages
+
+    def __str__(self) -> str:
+        return f'Книга "{self.name}"'
+
+    def __repr__(self) -> str:
+        return f'Book(id_={self.id_}, name={self.name!r}, pages={self.pages})'
+
+if __name__ == '__main__':
+    # инициализируем список книг
+    list_books = [
+        Book(id_=book_dict["id"], name=book_dict["name"], pages=book_dict["pages"]) for book_dict in BOOKS_DATABASE
+    ]
+    for book in list_books:
+        print(book)  # проверяем метод __str__
+
+    print(list_books)  # проверяем метод __repr__
